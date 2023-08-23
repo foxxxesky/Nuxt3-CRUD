@@ -15,6 +15,20 @@ model User {
   email             String      @unique
   name              String
   password          String
+
   createdAt         DateTime    @default(now())
   updatedAt         DateTime    @updatedAt
+
+  RefreshToken      RefreshToken[]
+}
+
+model RefreshToken {
+  id                String      @id         @default(uuid())
+  token             String      @unique
+
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  userId            String      @map("userId")
+  user User @relation(fields: [userId], references: [id])
 }
