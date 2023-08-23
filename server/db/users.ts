@@ -20,3 +20,9 @@ export const createUser = (userData: createUserPayload) => {
     data: finalUserData
   })
 }
+
+export const getUserByEmail = (email: string) => {
+  return prisma.user.findUnique({
+    where: { email }
+  })
+}
