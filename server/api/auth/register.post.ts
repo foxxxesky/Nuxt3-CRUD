@@ -15,9 +15,7 @@ export default defineEventHandler(async (event: H3Event) => {
     if (!validation.success) {
       return {
         statusCode: 400,
-        body: {
-          message: validation
-        }
+        message: validation
       }
     }
 
@@ -25,9 +23,7 @@ export default defineEventHandler(async (event: H3Event) => {
     if (await prisma.user.findUnique({ where: { email: body.email } })) {
       return {
         statusCode: 400,
-        body: {
-          message: 'Email already exists'
-        }
+        message: 'Email already exists'
       }
     }
 
