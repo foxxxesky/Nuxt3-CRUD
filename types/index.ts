@@ -11,3 +11,8 @@ export interface createUserPayload {
   email: string
   password: string
 }
+
+export interface createRefreshTokenPayload {
+  userId: string
+  token: string
+}
