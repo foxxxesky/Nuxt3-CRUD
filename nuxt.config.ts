@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  runtimeConfig: {
+    jwtAccessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
+    jwtRefreshTokenSecret: process.env.REFRESH_TOKEN_SECRET
+  },
+
   app: {
     head: {
       title: 'Nuxt 3 CRUD Prisma',
