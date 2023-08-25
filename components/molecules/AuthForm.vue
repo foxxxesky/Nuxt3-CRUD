@@ -2,15 +2,31 @@
 interface loginForm {
   email: string
   password: string
+  loading?: boolean
 }
 
 const data = reactive<loginForm>({
   email: '',
-  password: ''
+  password: '',
+  loading: false
 })
 
-const handleLogin = () => {
-  console.log(JSON.stringify(data))
+const handleLogin = async () => {
+  const { login } = useAuth()
+  // console.log(JSON.stringify(data))
+
+  try {
+    data.loading = true
+
+    await login({
+      email: data.email,
+      password: data.password
+    })
+  } catch (error) {
+    console.log(error)
+  } finally {
+    data.loading = false
+  }
 }
 </script>
 
