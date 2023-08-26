@@ -1,12 +1,10 @@
 <script setup>
-const { useAuthUser } = useAuth()
-const user = useAuthUser()
 
 </script>
 
 <template>
   <div>
-    <div v-if="user">
+    <div v-if="false">
       Home Page
     </div>
     <MoleculesAuthPage v-else />

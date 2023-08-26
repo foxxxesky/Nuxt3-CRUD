@@ -3,6 +3,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   runtimeConfig: {
+    githubClientId: process.env.GITHUB_CLIENT_ID,
+    githubClientSecret: process.env.GITHUB_CLIENT_SECRET,
     jwtAccessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
     jwtRefreshTokenSecret: process.env.REFRESH_TOKEN_SECRET
   },
@@ -30,12 +32,12 @@ export default defineNuxtConfig({
   modules: [
     // https://nuxt.com/modules/eslint
     '@nuxtjs/eslint-module',
-    // https://nuxt.com/modules/nuxtlabs-ui
-    '@nuxthq/ui',
     // https://nuxt.com/modules/google-fonts
     '@nuxtjs/google-fonts',
     // https://nuxt.com/modules/tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    // https://nuxt.com/modules/nuxt-auth
+    '@sidebase/nuxt-auth'
   ],
 
   css: ['~/assets/css/main.css'],

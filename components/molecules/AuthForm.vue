@@ -10,24 +10,6 @@ const data = reactive<loginForm>({
   password: '',
   loading: false
 })
-
-const handleLogin = async () => {
-  const { login } = useAuth()
-  // console.log(JSON.stringify(data))
-
-  try {
-    data.loading = true
-
-    await login({
-      email: data.email,
-      password: data.password
-    })
-  } catch (error) {
-    console.log(error)
-  } finally {
-    data.loading = false
-  }
-}
 </script>
 
 <template>
@@ -47,7 +29,7 @@ const handleLogin = async () => {
       />
 
       <div>
-        <button @click="handleLogin">
+        <button>
           Submit
         </button>
       </div>
