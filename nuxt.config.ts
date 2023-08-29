@@ -3,10 +3,42 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   runtimeConfig: {
-    githubClientId: process.env.GITHUB_CLIENT_ID,
-    githubClientSecret: process.env.GITHUB_CLIENT_SECRET,
-    jwtAccessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
-    jwtRefreshTokenSecret: process.env.REFRESH_TOKEN_SECRET
+    private: {
+      appSecret: process.env.NUXT_SECRET,
+      githubClientId: process.env.GITHUB_CLIENT_ID,
+      githubClientSecret: process.env.GITHUB_CLIENT_SECRET,
+      jwtAccessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
+      jwtRefreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
+      appOrigin: process.env.ORIGIN
+    }
+  },
+
+  modules: [
+    // https://nuxt.com/modules/eslint
+    '@nuxtjs/eslint-module',
+    // https://nuxt.com/modules/google-fonts
+    '@nuxtjs/google-fonts',
+    // https://nuxt.com/modules/nuxt-auth
+    '@sidebase/nuxt-auth'
+  ],
+
+  auth: {
+    origin: process.env.ORIGIN,
+    enableGlobalAppMiddleware: false
+  },
+
+  css: ['~/assets/css/main.css'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {}
+    }
+  },
+
+  googleFonts: {
+    families: {
+      Poppins: [400, 500, 600, 700]
+    }
   },
 
   app: {
@@ -27,24 +59,5 @@ export default defineNuxtConfig({
       ]
     },
     pageTransition: { name: 'page', mode: 'in-out' }
-  },
-
-  modules: [
-    // https://nuxt.com/modules/eslint
-    '@nuxtjs/eslint-module',
-    // https://nuxt.com/modules/google-fonts
-    '@nuxtjs/google-fonts',
-    // https://nuxt.com/modules/tailwindcss
-    '@nuxtjs/tailwindcss',
-    // https://nuxt.com/modules/nuxt-auth
-    '@sidebase/nuxt-auth'
-  ],
-
-  css: ['~/assets/css/main.css'],
-
-  googleFonts: {
-    families: {
-      Poppins: [400, 500, 600, 700]
-    }
   }
 })
