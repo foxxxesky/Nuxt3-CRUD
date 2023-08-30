@@ -51,47 +51,52 @@ async function register () {
 </script>
 
 <template>
-  <VeeForm
-    :validation-schema="userRegisterSchema"
-    class="pt-5 space-y-6"
-    @submit="register"
-  >
-    <AtomicUIInput
-      v-model="user.name"
-      name="name"
-      label="Name"
-      type="text"
-      placeholder="your name"
-    />
+  <div>
+    <h1 class="font-semibold text-2xl border-b border-rose-400 pb-2">
+      Register
+    </h1>
+    <VeeForm
+      :validation-schema="userRegisterSchema"
+      class="pt-5 space-y-6"
+      @submit="register"
+    >
+      <AtomicUIInput
+        v-model="user.name"
+        name="name"
+        label="Name"
+        type="text"
+        placeholder="your name"
+      />
 
-    <AtomicUIInput
-      v-model="user.email"
-      name="email"
-      label="Email address"
-      type="email"
-      placeholder="your email"
-    />
+      <AtomicUIInput
+        v-model="user.email"
+        name="email"
+        label="Email address"
+        type="email"
+        placeholder="your email"
+      />
 
-    <AtomicUIInput
-      v-model="user.password"
-      name="password"
-      label="Passwords"
-      type="password"
-      placeholder="********"
-    />
+      <AtomicUIInput
+        v-model="user.password"
+        name="password"
+        label="Passwords"
+        type="password"
+        placeholder="********"
+      />
 
-    <AtomicUIInput
-      v-model="user.passwordConfirmation"
-      name="passwordConfirmation"
-      label="Password Confirmation"
-      type="password"
-      placeholder="********"
-    />
+      <AtomicUIInput
+        v-model="user.passwordConfirmation"
+        name="passwordConfirmation"
+        label="Password Confirmation"
+        type="password"
+        placeholder="********"
+      />
 
-    <div class="flex">
-      <button :disabled="meta.touched || user.loading === true" class="p-2 rounded-md border border-slate-300 text-sm w-full hover:bg-slate-400 hover:cursor-pointer hover:text-white">
-        Submit
-      </button>
-    </div>
-  </VeeForm>
+      <div class="flex">
+        <button :disabled="meta.touched || user.loading === true" class="p-2 rounded-md border border-slate-300 text-sm w-full hover:bg-slate-400 hover:cursor-pointer hover:text-white">
+          Register
+        </button>
+      </div>
+    </VeeForm>
+  </div>
 </template>
