@@ -7,6 +7,6 @@
     <div v-if="false">
       Home Page
     </div>
-    <MoleculesAuthPage v-else />
+    <MoleculesRegisterPage v-else />
   </div>
 </template>
