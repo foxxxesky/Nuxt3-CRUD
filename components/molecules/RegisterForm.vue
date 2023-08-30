@@ -44,6 +44,8 @@ async function register () {
     })
   } catch (error: any) {
     $toast.error(error.message)
+  } finally {
+    user.value.loading = false
   }
 }
 </script>
@@ -87,7 +89,7 @@ async function register () {
     />
 
     <div class="flex">
-      <button :disabled="meta.touched" class="p-2 rounded-md border border-slate-300 text-sm w-full hover:bg-slate-400 hover:cursor-pointer hover:text-white">
+      <button :disabled="meta.touched || user.loading === true" class="p-2 rounded-md border border-slate-300 text-sm w-full hover:bg-slate-400 hover:cursor-pointer hover:text-white">
         Submit
       </button>
     </div>
