@@ -27,10 +27,13 @@
   "dependencies": {
     "@prisma/client": "^5.2.0",
     "@tailwindcss/forms": "^0.5.5",
+    "@vee-validate/nuxt": "^4.11.3",
+    "@vee-validate/zod": "^4.11.3",
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.1",
     "next-auth": "^4.21.1",
     "uuid": "^9.0.0",
+    "vue3-toastify": "^0.1.12",
     "zod": "^3.22.2"
   }
 }

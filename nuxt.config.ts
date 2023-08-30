@@ -19,7 +19,9 @@ export default defineNuxtConfig({
     // https://nuxt.com/modules/google-fonts
     '@nuxtjs/google-fonts',
     // https://nuxt.com/modules/nuxt-auth
-    '@sidebase/nuxt-auth'
+    '@sidebase/nuxt-auth',
+    // https://nuxt.com/modules/vee-validate
+    '@vee-validate/nuxt'
   ],
 
   auth: {
@@ -38,6 +40,18 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       Poppins: [400, 500, 600, 700]
+    }
+  },
+
+  veeValidate: {
+    // disable or enable auto imports
+    autoImports: true,
+    // Use different names for components
+    componentNames: {
+      Form: 'VeeForm',
+      Field: 'VeeField',
+      FieldArray: 'VeeFieldArray',
+      ErrorMessage: 'VeeErrorMessage'
     }
   },
 
