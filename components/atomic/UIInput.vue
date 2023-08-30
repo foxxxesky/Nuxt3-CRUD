@@ -37,7 +37,7 @@ const emits = defineEmits(['update:modelValue'])
       {{ props.label }}
     </label>
     <VeeField
-      v-slot="{ field }"
+      v-slot="{ field, errors }"
       :name="props.name"
     >
       <input
@@ -46,6 +46,7 @@ const emits = defineEmits(['update:modelValue'])
         :placeholder="props.placeholder"
         :value="props.modelValue"
         class="block px-4 w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        :class="{'border-red-500': errors.length > 0}"
         autocomplete="off"
         autofocus="true"
         @input="event => emits ('update:modelValue', event.target.value)"
