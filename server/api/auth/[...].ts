@@ -1,6 +1,7 @@
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
 import { NuxtAuthHandler } from '#auth'
+import { getUserByEmail } from '~/server/db/users'
 
 const config = useRuntimeConfig()
 
@@ -20,28 +21,25 @@ export default NuxtAuthHandler({
       // You can specify whatever fields you are expecting to be submitted.
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
-      credentials: {
-        username: { label: 'Username', type: 'text', placeholder: '(hint: jsmith)' },
-        password: { label: 'Password', type: 'password', placeholder: '(hint: hunter2)' }
-      },
-      authorize (credentials: any) {
-        // You need to provide your own logic here that takes the credentials
-        // submitted and returns either a object representing a user or value
-        // that is false/null if the credentials are invalid.
-        // NOTE: THE BELOW LOGIC IS NOT SAFE OR PROPER FOR AUTHENTICATION!
+      // credentials: {
+      //   username: { label: 'Username', type: 'text', placeholder: '(hint: jsmith)' },
+      //   password: { label: 'Password', type: 'password', placeholder: '(hint: hunter2)' }
+      // },
+      async authorize (credentials: any) {
+        const user = await getUserByEmail(credentials.email)
+        // const user = {
+        //   email: 'syariif@mail.com',
+        //   password: '123456'
+        // }
+        console.log(credentials)
+        console.log(user)
 
-        const user = { id: '1', name: 'J Smith', username: 'jsmith', password: 'hunter2', image: 'https://avatars.githubusercontent.com/u/25911230?v=4' }
-
-        if (credentials?.username === user.username && credentials?.password === user.password) {
-          // Any object returned will be saved in `user` property of the JWT
+        if (credentials.email === user?.email && credentials.password === user?.password) {
+          // Return the user object if credentials are valid
           return user
         } else {
-          console.error('Warning: Malicious login attempt registered, bad credentials provided')
-
-          // If you return null then an error will be displayed advising the user to check their details.
+          // Return null if credentials are invalid
           return null
-
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       }
     })
