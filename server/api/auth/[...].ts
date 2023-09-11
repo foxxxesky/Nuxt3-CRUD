@@ -31,8 +31,6 @@ export default NuxtAuthHandler({
         //   email: 'syariif@mail.com',
         //   password: '123456'
         // }
-        console.log(credentials)
-        console.log(user)
 
         if (credentials.email === user?.email && credentials.password === user?.password) {
           // Return the user object if credentials are valid
